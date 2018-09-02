@@ -12,7 +12,7 @@ import java.util.HashMap;
  * wiederung im Packet-Ojekte umwandeln um einfach auf die Daten zugreifen zu
  * können
  * 
- * @author Gordon Goldbach
+ * @author Gordon
  * @version 30.08.2018 13:00:00
  *
  */
