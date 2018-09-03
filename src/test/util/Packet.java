@@ -38,7 +38,7 @@ public class Packet {
 	}
 
 	/**
-	 * Erstellt ein Packet Objekt aus dem ingehenden String
+	 * Erstellt ein Packet Objekt aus dem eingehenden String
 	 * 
 	 * @param input String welcher gesendet wurde
 	 * @return ein Packet Objekt zu dem String
@@ -50,7 +50,9 @@ public class Packet {
 			return null;
 		p.action = parts[1];
 		for (int i = 2; i < parts.length; i++) {
-			p.data.put(parts[i].split(":")[0], parts[i].split(":")[1]);
+			String key = parts[i].split(":")[0].replaceAll("<hashtag>", "#").replaceAll("<colom>", ":");
+			String value = parts[i].split(":")[1].replaceAll("<hashtag>", "#").replaceAll("<colom>", ":");
+			p.data.put(key, value);
 		}
 		return p;
 	}
@@ -77,7 +79,9 @@ public class Packet {
 	public String save() {
 		String output = "#" + action + "#";
 		for (String key : data.keySet()) {
-			output += key + ":" + data.get(key) + "#";
+			String saveKey = key.replaceAll("#", "<hashtag>").replaceAll(":", "<colom>");
+			String saveValue = data.get(key).replaceAll("#", "<hashtag>").replaceAll(":", "<colom>");
+			output += saveKey + ":" + saveValue + "#";
 		}
 
 		return output;
